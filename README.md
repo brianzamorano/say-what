@@ -14,7 +14,7 @@ Links for install provided for Calibre & Lame.
 -h    Prints out this usage message summarizing these command-line options, then exits
 
 ### Sample Usage
-$ say-what -f "EBOOK.mobi" -r 275 -s "Perry sat on the couch"
+$ ./say-what.sh -f "EBOOK.mobi" -r 275 -s "Perry sat on the couch"
 
 ### TODO: 
 * Better error handling
