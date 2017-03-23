@@ -8,10 +8,10 @@ Links for install provided for Calibre & Lame.
 * [Mac OSX] - Say What requires Mac OSX's TTS "say" command line tool
 
 ### Parameters
--f     **MANDATORY**: provide FILE to convert into an "audiobook"
--s    Indicates a starting point for your "audiobook". When using this option, please enter your text between two quotation " marks. 
--r    Sets the reading speed (default value is 260) - Recommended values are between 250-300.
--h    Prints out this usage message summarizing these command-line options, then exits
+* -f     **MANDATORY**: provide FILE to convert into an "audiobook"
+* -s    Indicates a starting point for your "audiobook". When using this option, please enter your text between two quotation " marks. 
+* -r    Sets the reading speed (default value is 260) - Recommended values are between 250-300.
+* -h    Prints out this usage message summarizing these command-line options, then exits
 
 ### Sample Usage
 $ ./say-what.sh -f "EBOOK.mobi" -r 275 -s "Perry sat on the couch"
