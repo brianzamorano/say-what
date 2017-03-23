@@ -163,7 +163,7 @@ trap cleanup EXIT
 
 start_off_point(){
 if [[ -n "$START_OFF_POINT" ]]; then
-  sed -i '' "/$START_OFF_POINT/,$!d" $BASE.txt
+  sed -i '' "/$START_OFF_POINT/,\$!d" $BASE.txt
 fi
 }
 
