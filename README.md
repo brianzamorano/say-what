@@ -1,5 +1,5 @@
 ### Description
-Convert your epub/mobi/txt files to MP3 for "reading" on the go! (Mac OSX only)
+Convert your epub/mobi/pdf/txt files to MP3 for "reading" on the go! (Mac OSX only)
 
 ### Requirements
 Links for install provided for Calibre & Lame.
@@ -15,6 +15,9 @@ Links for install provided for Calibre & Lame.
 
 ### Sample Usage
 $ ./say-what.sh -f "EBOOK.mobi" -r 275 -s "Perry sat on the couch"
+
+### Notes
+PDF support is iffy-at best unless it is primarily text but give it a shot!
 
 ### TODO: 
 * Better error handling

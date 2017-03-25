@@ -15,7 +15,7 @@ READING_SPEED=260
 
 usage(){
   echo '[DESCRIPTION]
-Convert your epub/mobi/txt files to MP3 for "reading" on the go! (Mac OSX only) 
+Convert your epub/mobi/pdf/txt files to MP3 for "reading" on the go! (Mac OSX only) 
 
 [PARAMETERS]
 -f MANDATORY: provide FILE to convert into an "audiobook"
@@ -114,6 +114,9 @@ conversion_check(){
       convert_to_txt
       ;;
     *.epub)
+      convert_to_txt
+      ;;
+    *.pdf)
       convert_to_txt
       ;;
     *)
