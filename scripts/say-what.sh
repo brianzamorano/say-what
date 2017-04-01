@@ -145,7 +145,14 @@ dictate_text(){
 
 convert_to_mp3(){
   echo "[INFO] Converting audio to mp3. Please be patient. This may take a while ..."
-  lame --quiet -m m "$BASE.aiff" "$BOOK_TITLE-$BOOK_AUTHOR.mp3" --tt "$BOOK_TITLE" --ta "$BOOK_AUTHOR" --ti "$BASE.jpg"
+  case "$FILE" in
+    *.txt)
+      lame --quiet -m m "$BASE.aiff" "$BOOK_TITLE-$BOOK_AUTHOR.mp3" --tt "$BOOK_TITLE" --ta "$BOOK_AUTHOR"
+      ;;
+    *)
+      lame --quiet -m m "$BASE.aiff" "$BOOK_TITLE-$BOOK_AUTHOR.mp3" --tt "$BOOK_TITLE" --ta "$BOOK_AUTHOR" --ti "$BASE.jpg"
+      ;;
+    esac
 }
 
 cleanup(){
