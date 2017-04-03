@@ -9,12 +9,13 @@ Links for install provided for Calibre & Lame.
 
 ### Parameters
 * -f     **MANDATORY**: provide FILE to convert into an "audiobook"
-* -s    Indicates a starting point for your "audiobook". When using this option, please enter your text between two quotation " marks. 
+* -s    Indicates a starting point for your "audiobook". When using this option, please enter your text between quotation marks. 
+* -e    Set end point to finish reading. Helpful when you only want to listen to a few chapters at a time. When using this option please enter your text between quotation marks.
 * -r    Sets the reading speed (default value is 260) - Recommended values are between 250-300.
 * -h    Prints out this usage message summarizing these command-line options, then exits
 
 ### Sample Usage
-$ ./say-what.sh -f "EBOOK.mobi" -r 275 -s "Perry sat on the couch"
+$ ./say-what.sh -f "EBOOK.mobi" -r 275 -s "Perry sat on the couch" -e "Chapter 13"
 
 ### Notes
 PDF support is iffy-at best unless it is primarily text but give it a shot!

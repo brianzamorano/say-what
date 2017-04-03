@@ -11,6 +11,7 @@
 #Author:	Brian Zamorano
 
 START_OFF_POINT=""
+END_POINT=""
 READING_SPEED=260
 
 usage(){
@@ -19,12 +20,17 @@ Convert your epub/mobi/pdf/txt files to MP3 for "reading" on the go! (Mac OSX on
 
 [PARAMETERS]
 -f MANDATORY: provide FILE to convert into an "audiobook"
--s Indicates a starting point for your "audiobook". When using this option, please enter your text between two quotation " marks. 
+
+-s Indicates a starting point for your "audiobook". When using this option, please enter your text between quotation " marks. 
+
+-e Set end point to finish reading. Helpful when you only want to listen to a few chapters at a time. When using this option please enter your text between quotation marks.
+
 -r Sets the reading speed (default value is 260) - Recommended values are between 250-300.
+
 -h Prints out this usage message summarizing these command-line options, then exits
 
 [EXAMPLE USAGE]
-$ ./say-what.sh -f "EBOOK.mobi" -r 275 -s "Perry sat on the couch"
+$ ./say-what.sh -f "EBOOK.mobi" -r 275 -s "Perry sat on the couch" -e "Chapter 13"
 
 [TODO]
 - Better error handling
@@ -37,7 +43,7 @@ speed_warning(){
   exit 1
 }
 
-while getopts :f:s:h:r: opt; do
+while getopts :f:s:h:e:r: opt; do
   case $opt in
     f)
       FILE="$OPTARG"
@@ -46,6 +52,9 @@ while getopts :f:s:h:r: opt; do
       ;;
     s)
       START_OFF_POINT="$OPTARG"
+      ;;
+    e)
+      END_POINT="$OPTARG"
       ;;
     r)
       if [[ $OPTARG -eq $OPTARG ]]; then
@@ -172,9 +181,19 @@ cleanup(){
 trap cleanup EXIT 
 
 start_off_point(){
-if [[ -n "$START_OFF_POINT" ]]; then
-  sed -i '' "/$START_OFF_POINT/,\$!d" $BASE.txt
-fi
+  if [[ -n "$START_OFF_POINT" ]]; then
+    sed -i '' "/$START_OFF_POINT/,\$!d" $BASE.txt
+  fi
+}
+
+end_point(){
+  if [[ -n "$END_POINT" ]]; then
+    ## TODO: Find a better way to do this.
+    ## Sed'ing inline does not seem to clear out the text as expected in Mac OSX (works well in Linux)
+    ## Running the output to a new tmp file and then replacing the tmp txt file seems to do the trick.
+    sed "/$END_POINT/q" $BASE.txt > $BASE-tmp.txt 
+    mv $BASE-tmp.txt $BASE.txt
+  fi
 }
 
 success(){
@@ -182,15 +201,16 @@ success(){
 }
 
 main(){
-check_prereqs_lame
-check_prereqs_calibre
-check_prereqs_mac_osx
-get_book_metadata
-conversion_check
-start_off_point
-dictate_text
-convert_to_mp3
-success
+  check_prereqs_lame
+  check_prereqs_calibre
+  check_prereqs_mac_osx
+  get_book_metadata
+  conversion_check
+  start_off_point
+  end_point
+  dictate_text
+  convert_to_mp3
+  success
 }
 
 main
