@@ -13,6 +13,7 @@
 START_OFF_POINT=""
 END_POINT=""
 READING_SPEED=260
+VOICE="alex"
 
 usage(){
   echo '[DESCRIPTION]
@@ -43,7 +44,7 @@ speed_warning(){
   exit 1
 }
 
-while getopts :f:s:h:e:r: opt; do
+while getopts :f:s:h:e:r:v: opt; do
   case $opt in
     f)
       FILE="$OPTARG"
@@ -69,6 +70,9 @@ while getopts :f:s:h:e:r: opt; do
       ;;
     h)
       usage
+      ;;
+    v)
+      VOICE="$OPTARG"
       ;;
     \?)
       echo "[ERROR] Invalid option: -$OPTARG. Displaying help options." >&2
@@ -149,7 +153,7 @@ get_book_metadata(){
 
 dictate_text(){
   echo "[INFO] Dictating $BOOK_TITLE to audio. Please be patient. This may take a while ..."
-  say -f "$BASE.txt" -r "$READING_SPEED" -v alex -o "$BASE.aiff"
+  say -f "$BASE.txt" -r "$READING_SPEED" -v "$VOICE" -o "$BASE.aiff" 
 }
 
 convert_to_mp3(){
